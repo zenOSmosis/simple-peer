@@ -15,8 +15,6 @@ A fork of [simple-peer](https://github.com/feross/simple-peer), which also utili
 
 This fork aims to document development processes a bit better as well as bring some of the method calls a bit closer to the main WebRTC spec (i.e. using promises where they are used in the main WebRTC API).
 
-By utilizing [webrtc-adapter](https://github.com/webrtcHacks/adapter) as well, some stability issues we were previously experiencing have been ironed out somewhat.
-
 It is also utilized in the reference application, [Speaker App](https://speaker.app).
 
 [![Sauce Test Status](https://app.saucelabs.com/browser-matrix/webrtc-peer.svg)](https://app.saucelabs.com/u/webrtc-peer)
