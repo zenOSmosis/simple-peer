@@ -368,6 +368,8 @@ Received a message from the remote peer (via the data channel).
 
 If `objectMode` is set to `true`, then `data` will be a `String`. Otherwise, `data` will be a `Buffer` (in Node.js) or a `Uint8Array` in the browser. (See [buffer](https://github.com/feross/buffer) for more info.)
 
+IMPORTANT: Objects and arrays cannot be utilized directly with objectMode without serializing (i.e. JSON.stringify(data)) before transmission, and deserializing (i.e. JSON.parse(data)) upon receipt.
+
 ### `peer.on('stream', stream => {})`
 
 Received a remote video stream, which can be displayed in a video tag:
