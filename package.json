@@ -65,7 +65,7 @@
     "// test": "npm run lint && npm run test-node && npm run test-browser",
     "test-browser": "dotenv airtap --coverage --concurrency 1 -- test/*.js",
     "test-browser-local": "dotenv airtap --coverage --preset --local -- test/*.js",
-    "test-node": "WRTC=wrtc tape test/*.js",
+    "test-node": "tape test/*.js",
     "// coverage": "nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc npm run test-node",
     "lint": "prettier --write '(**/)*.js'"
