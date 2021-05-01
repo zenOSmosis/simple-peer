@@ -12,8 +12,11 @@ exports.config = {
   sdpSemantics: "unified-plan",
 };
 
+const isNode = typeof window === "undefined";
+exports.isNode = isNode;
+
 // For testing on node, we must provide a WebRTC implementation
-if (process.env.WRTC === "wrtc") {
+if (isNode) {
   exports.wrtc = require("wrtc");
 }
 
