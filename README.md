@@ -1,9 +1,11 @@
-[![MIT License][license-image]][license-url] [![ci][ci-image]][ci-url] [![virtual-device-testing][sauce-image]][sauce-url]
+[![MIT License][license-image]][license-url] [![ci][ci-image]][ci-url] [![CodeQL][codeql-image]][codeql-url] [![virtual-device-testing][sauce-image]][sauce-url]
 
 [license-image]: https://img.shields.io/github/license/zenosmosis/webrtc-peer
 [license-url]: https://raw.githubusercontent.com/zenosmosis/webrtc-peer/master/LICENSE
 [ci-image]: https://img.shields.io/github/workflow/status/zenosmosis/webrtc-peer/ci/master
 [ci-url]: https://github.com/zenosmosis/webrtc-peer/actions
+[codeql-image]: https://github.com/zenosmosis/webrtc-peer/workflows/CodeQL/badge.svg
+[codeql-url]: https://github.com/zenosmosis/webrtc-peer/actions?query=workflow%3ACodeQL
 [sauce-image]: https://saucelabs.com/buildstatus/webrtc-peer
 [sauce-url]: https://app.saucelabs.com/open_sauce/user/webrtc-peer
 
