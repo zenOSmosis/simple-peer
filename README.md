@@ -78,10 +78,10 @@ It is also utilized in the reference application, [Speaker App](https://speaker.
 
 ## Install
 
-TODO: Update
+This package is not currently published on npm, but it can be installed by using the GitHub URL as follows:
 
 ```
-npm install simple-peer
+npm install github:https://github.com/zenOSmosis/webrtc-peer
 ```
 
 This package works in the browser with [browserify](https://browserify.org). If
@@ -95,7 +95,7 @@ directly in a `<script>` tag. This exports a `WebRTCPeer` constructor on
 ### Data Channels
 
 ```js
-var Peer = require('simple-peer')
+var Peer = require('webrtc-peer')
 
 var peer1 = new Peer({ initiator: true })
 var peer2 = new Peer()
@@ -126,7 +126,7 @@ peer2.on('data', data => {
 Video/voice is also super simple! In this example, peer1 sends video to peer2.
 
 ```js
-var Peer = require('simple-peer')
+var Peer = require('webrtc-peer')
 
 // get video/voice stream
 navigator.mediaDevices.getUserMedia({
@@ -171,7 +171,7 @@ It is also possible to establish a data-only connection at first, and later add
 a video/voice stream, if desired.
 
 ```js
-var Peer = require('simple-peer') // create peer without waiting for media
+var Peer = require('webrtc-peer') // create peer without waiting for media
 
 var peer1 = new Peer({ initiator: true }) // you don't need streams here
 var peer2 = new Peer()
@@ -215,7 +215,7 @@ TODO: Remove?
 To use this library in node, pass in `opts.wrtc` as a parameter (see [the constructor options](#peer--new-peeropts)):
 
 ```js
-var Peer = require('simple-peer')
+var Peer = require('webrtc-peer')
 var wrtc = require('wrtc')
 
 var peer1 = new Peer({ initiator: true, wrtc: wrtc })
@@ -323,7 +323,7 @@ event on the stream.
 Detect native WebRTC support in the javascript environment.
 
 ```js
-var Peer = require('simple-peer')
+var Peer = require('webrtc-peer')
 
 if (Peer.WEBRTC_SUPPORT) {
   // webrtc support!
@@ -544,7 +544,7 @@ $ npm run test-browser # Or npm run test to run local and remote
 
 ### Memory Usage
 
-If you call `peer.send(buf)`, `simple-peer` is not keeping a reference to `buf`
+If you call `peer.send(buf)`, `webrtc-peer` is not keeping a reference to `buf`
 and sending the buffer at some later point in time. We immediately call
 `channel.send()` on the data channel. So it should be fine to mutate the buffer
 right afterward.
