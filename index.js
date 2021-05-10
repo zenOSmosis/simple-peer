@@ -42,8 +42,8 @@ function filterTrickle(sdp) {
 }
 
 // TODO: Keep?
-function warn(message) {
-  console.warn(message);
+function warn(...args) {
+  console.warn(...args);
 }
 
 // TODO: Don't extend stream.Duplex because we might want multiple data channels
@@ -306,25 +306,22 @@ class Peer extends stream.Duplex {
   _addIceCandidate(candidate) {
     const iceCandidateObj = new this._wrtc.RTCIceCandidate(candidate);
     this._pc.addIceCandidate(iceCandidateObj).catch(err => {
-      if (err instanceof TypeError) {
-        /**
-         * May 10, 2021: Chrome will sometimes raise a TypeError when trying to
-         * addIceCandidate.
-         * 
-         * Ignoring the TypeError due to the workaround suggested:
-         * @see https://stackoverflow.com/questions/58908081/webrtc-getting-failed-to-execute-addicecandidate-on-rtcpeerconnection-error-on
-         */
-        warn('Ignoring TypeError for addIceCandidate', err)
-        return
-      }
-
       if (
         !iceCandidateObj.address ||
         iceCandidateObj.address.endsWith(".local")
       ) {
         warn("Ignoring unsupported ICE candidate.");
       } else {
-        this.destroy(errCode(err, ERR_ADD_ICE_CANDIDATE));
+        /**
+         * May 10, 2021: Chrome will sometimes raise a TypeError when trying to
+         * addIceCandidate.
+         *
+         * Ignoring the TypeError due to the workaround suggested:
+         * @see https://stackoverflow.com/questions/58908081/webrtc-getting-failed-to-execute-addicecandidate-on-rtcpeerconnection-error-on
+         */
+        warn("Ignoring error for addIceCandidate", err);
+
+        // this.destroy(errCode(err, ERR_ADD_ICE_CANDIDATE));
       }
     });
   }
