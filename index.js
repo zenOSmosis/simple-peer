@@ -15,7 +15,7 @@ const ICECOMPLETE_TIMEOUT = 5 * 1000;
 const CHANNEL_CLOSING_TIMEOUT = 5 * 1000;
 
 const ERR_WEBRTC_SUPPORT = "ERR_WEBRTC_SUPPORT";
-const ERR_ADD_ICE_CANDIDATE = "ERR_ADD_ICE_CANDIDATE";
+// const ERR_ADD_ICE_CANDIDATE = "ERR_ADD_ICE_CANDIDATE";
 const ERR_SENDER_REMOVED = "ERR_SENDER_REMOVED";
 const ERR_SENDER_ALREADY_ADDED = "ERR_SENDER_ALREADY_ADDED";
 const ERR_TRACK_NOT_ADDED = "ERR_TRACK_NOT_ADDED";
@@ -42,8 +42,8 @@ function filterTrickle(sdp) {
 }
 
 // TODO: Keep?
-function warn(message) {
-  console.warn(message);
+function warn(...args) {
+  console.warn(...args);
 }
 
 // TODO: Don't extend stream.Duplex because we might want multiple data channels
@@ -312,7 +312,20 @@ class Peer extends stream.Duplex {
       ) {
         warn("Ignoring unsupported ICE candidate.");
       } else {
-        this.destroy(errCode(err, ERR_ADD_ICE_CANDIDATE));
+        /**
+         * Ignoring addIceCandiadate errors.
+         *
+         * This was being especially being triggered when Chrome was
+         * transcoding rooms for Speaker.app, a screenshare was being
+         * presented, and a new client connected (especially problematic when
+         * iOS 14 guests connected).
+         *
+         * See this StackOverflow workaround for more details:
+         * @see https://stackoverflow.com/questions/58908081/webrtc-getting-failed-to-execute-addicecandidate-on-rtcpeerconnection-error-on
+         */
+        warn("Ignoring error for addIceCandidate", err);
+
+        // this.destroy(errCode(err, ERR_ADD_ICE_CANDIDATE));
       }
     });
   }
