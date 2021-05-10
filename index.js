@@ -306,6 +306,18 @@ class Peer extends stream.Duplex {
   _addIceCandidate(candidate) {
     const iceCandidateObj = new this._wrtc.RTCIceCandidate(candidate);
     this._pc.addIceCandidate(iceCandidateObj).catch(err => {
+      if (err instanceof TypeError) {
+        /**
+         * May 10, 2021: Chrome will sometimes raise a TypeError when trying to
+         * addIceCandidate.
+         * 
+         * Ignoring the TypeError due to the workaround suggested:
+         * @see https://stackoverflow.com/questions/58908081/webrtc-getting-failed-to-execute-addicecandidate-on-rtcpeerconnection-error-on
+         */
+        warn('Ignoring TypeError for addIceCandidate', err)
+        return
+      }
+
       if (
         !iceCandidateObj.address ||
         iceCandidateObj.address.endsWith(".local")
