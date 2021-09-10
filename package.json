@@ -1,14 +1,21 @@
 {
   "name": "webrtc-peer",
   "description": "Simple one-to-one WebRTC video/voice and data channels",
-  "version": "9.11.0",
-  "author": {
-    "name": "Feross Aboukhadijeh",
-    "email": "feross@feross.org",
-    "url": "https://feross.org"
-  },
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Feross Aboukhadijeh",
+      "email": "feross@feross.org",
+      "url": "https://feross.org"
+    },
+    {
+      "name": "Jeremy Harris",
+      "email": "jeremy.harris@zenosmosis.com",
+      "url": "https://zenosmosis.com"
+    }
+  ],
   "bugs": {
-    "url": "https://github.com/feross/simple-peer/issues"
+    "url": "https://github.com/zenOSmosis/webrtc-peer/issues"
   },
   "dependencies": {
     "buffer": "^6.0.3",
