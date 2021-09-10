@@ -42,7 +42,7 @@
     "string-to-stream": "^3.0.1",
     "tape": "^5.2.2",
     "wrtc": "^0.4.7",
-    "ws": "^7.4.5"
+    "ws": "^8.2.2"
   },
   "keywords": [
     "data",
